@@ -55,9 +55,36 @@ variable "name" {
   type        = string
 }
 
-variable "get_all_authors_name" {
+variable "lambda_function_name" {
     type = string
 }
-variable "lambda_authors_invoke_arn" {
+variable "lambda_invoke_arn" {
     type = string
+}
+variable "method_name" {
+  type = string
+  validation {
+    condition     = contains(["GET", "POST", "PUT", "PATCH", "DELETE"], var.method_name)
+    error_message = "Allowed values: 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'."
+  }
+}
+variable "path_part"{
+  description = "Additional path part, can be static, help set variables like {id}, if not set path will bewithout path variables"
+  type = string
+  default = null
+}
+variable "actaws_api_gateway_rest_api" {
+  type = object({
+    id = string
+    execution_arn = string
+    root_resource_id = string
+  })
+  
+}
+variable "aws_api_gateway_rest_api_id"{
+  description = "for create a lot of methods in one api"
+  type = string
+}
+variable "aws_api_gateway_rest_api_execution_arn"{
+  type = string
 }
