@@ -4,14 +4,14 @@
 # }
 
 
-resource "null_resource" "method-delay" {
-  provisioner "local-exec" {
-    command = "sleep 5"
-  }
-  triggers = {
-    response = aws_api_gateway_resource.courses.id
-  }
-}
+# resource "null_resource" "method-delay" {
+#   provisioner "local-exec" {
+#     command = "sleep 5"
+#   }
+#   triggers = {
+#     response = aws_api_gateway_resource.courses.id
+#   }
+# }
 
 module "dynamo_db_courses" {
   source      = "./modules/dynamodb/eu-central-1"
