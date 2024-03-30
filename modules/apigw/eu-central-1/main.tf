@@ -8,7 +8,7 @@ module "label" {
 module "cors" {
   source = "squidfunk/api-gateway-enable-cors/aws"
   version = "0.3.3"
-  api_id          = var.var.aws_api_gateway_rest_api.id
+  api_id          = var.aws_api_gateway_rest_api.id
   api_resource_id = aws_api_gateway_resource.this.id
 }
 resource "aws_lambda_permission" "this" {
@@ -16,7 +16,7 @@ resource "aws_lambda_permission" "this" {
   action        = "lambda:InvokeFunction"
   function_name =  var.lambda_function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${var.aws_api_gateway_rest_api.execution_arn}/*/${var.method_name}${aws_api_gateway_resource.this.path}"
+  source_arn    = "${var.aws_api_gateway_rest_api.execution_arn}/*/${var.method_type}${aws_api_gateway_resource.this.path}"
 }
 
 resource "aws_api_gateway_resource" "this" {
@@ -28,7 +28,7 @@ resource "aws_api_gateway_resource" "this" {
 resource "aws_api_gateway_method" "this" {
     rest_api_id   = var.aws_api_gateway_rest_api.id
     resource_id   = aws_api_gateway_resource.this.id
-    http_method   = "GET"
+    http_method   = var.method_type
     authorization = "NONE"
 }
 
@@ -43,7 +43,7 @@ resource "aws_api_gateway_integration" "this" {
     request_templates = {
         "application/xml" = <<EOF
         {
-            "body" : $input.json('$')
+            "body" : $inpost.json('$')
         }
         EOF
     }
@@ -70,7 +70,7 @@ resource "aws_api_gateway_integration_response" "this" {
     status_code = aws_api_gateway_method_response.this.status_code
     response_parameters = {
       "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
-      "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS,GET,PUT,PATCH,DELETE'",
+      "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS,GET,post,PATCH,DELETE'",
       "method.response.header.Access-Control-Allow-Origin" = "'*'"
     }
 }

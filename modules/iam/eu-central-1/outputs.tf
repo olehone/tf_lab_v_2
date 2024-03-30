@@ -7,8 +7,8 @@ output "table_get_all_courses_role_arn" {
 output "table_get_course_role_arn" {
     value = aws_iam_role.get_course.arn
 }
-output "table_put_course_role_arn" {
-    value = aws_iam_role.put_course.arn
+output "table_post_course_role_arn" {
+    value = aws_iam_role.post_course.arn
 }
 output "table_update_course_role_arn" {
     value = aws_iam_role.update_course.arn

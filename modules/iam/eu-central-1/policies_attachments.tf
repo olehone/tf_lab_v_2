@@ -8,9 +8,9 @@ resource "aws_iam_role_policy_attachment" "read_table_authors" {
 #   policy_arn = aws_iam_policy.get_author.arn
 # }
 
-# resource "aws_iam_role_policy_attachment" "put_author" {
+# resource "aws_iam_role_policy_attachment" "post_author" {
 #   role       = aws_iam_role.label_table_authors.name
-#   policy_arn = aws_iam_policy.put_author.arn
+#   policy_arn = aws_iam_policy.post_author.arn
 # }
 
 # resource "aws_iam_role_policy_attachment" "update_author" {
@@ -33,9 +33,9 @@ resource "aws_iam_role_policy_attachment" "get_course" {
   policy_arn = aws_iam_policy.get_course.arn
 }
 
-resource "aws_iam_role_policy_attachment" "put_course" {
-  role       = aws_iam_role.put_course.name
-  policy_arn = aws_iam_policy.put_course.arn
+resource "aws_iam_role_policy_attachment" "post_course" {
+  role       = aws_iam_role.post_course.name
+  policy_arn = aws_iam_policy.post_course.arn
 }
 
 resource "aws_iam_role_policy_attachment" "update_course" {

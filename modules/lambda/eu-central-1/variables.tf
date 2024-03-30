@@ -20,7 +20,7 @@ variable "get_all_courses_name" {
 variable "get_course_name" {
     type = string
 }
-variable "put_course_name" {
+variable "post_course_name" {
     type = string
 }
 variable "update_course_name" {
@@ -44,7 +44,7 @@ variable "lambda_get_all_courses_role_arn" {
 variable "lambda_get_course_role_arn" {
     type = string
 }
-variable "lambda_put_course_role_arn" {
+variable "lambda_post_course_role_arn" {
     type = string
 }
 variable "lambda_update_course_role_arn" {

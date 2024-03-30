@@ -23,11 +23,11 @@ module "label_get_course" {
   context  = var.context
   name     = var.get_course_name
 }
-module "label_put_course" {
+module "label_post_course" {
   source   = "cloudposse/label/null"
   version  = "0.25.0"
   context  = var.context
-  name     = var.put_course_name
+  name     = var.post_course_name
 }
 module "label_update_course" {
   source   = "cloudposse/label/null"
@@ -98,23 +98,23 @@ module "lambda_get_course" {
   tags = module.label_get_course.tags
 }
 
-module "lambda_put_course" {
+module "lambda_post_course" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "4.13.0"
-  function_name = module.label_put_course.id
-  description = "Put course"
+  function_name = module.label_post_course.id
+  description = "post course"
   handler = "index.handler"
   runtime = "nodejs16.x"
-  source_path = "${path.module}/lambda_src/put_course/index.js"
+  source_path = "${path.module}/lambda_src/post_course/index.js"
   
   environment_variables = {
     TABLE_NAME = var.table_courses_name
   }
 
   create_role = false
-  lambda_role = var.lambda_put_course_role_arn
+  lambda_role = var.lambda_post_course_role_arn
 
-  tags = module.label_put_course.tags
+  tags = module.label_post_course.tags
 }
 
 module "lambda_update_course" {

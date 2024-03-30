@@ -19,11 +19,11 @@ output "lambda_get_course_invoke_arn" {
     value = module.lambda_get_course.lambda_function_invoke_arn
 }
 
-output "lambda_put_course_function_name" {
-    value = module.lambda_put_course.lambda_function_name
+output "lambda_post_course_function_name" {
+    value = module.lambda_post_course.lambda_function_name
 }
-output "lambda_put_course_invoke_arn" {
-    value = module.lambda_put_course.lambda_function_invoke_arn
+output "lambda_post_course_invoke_arn" {
+    value = module.lambda_post_course.lambda_function_invoke_arn
 }
 
 output "lambda_update_course_function_name" {
