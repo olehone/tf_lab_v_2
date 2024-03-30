@@ -19,8 +19,8 @@ resource "aws_iam_role" "get_course" {
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
 }
-resource "aws_iam_role" "post_course" {
-  name               = "${module.label_table_courses.id}-post"
+resource "aws_iam_role" "put_course" {
+  name               = "${module.label_table_courses.id}-put"
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
 }
@@ -46,7 +46,7 @@ resource "aws_iam_role" "read_table_authors" {
 #   path               = "/"
 #   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
 # }
-# resource "aws_iam_role" "post_author" {
+# resource "aws_iam_role" "put_author" {
 #   name               = module.label_table_authors.id
 #   path               = "/"
 #   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json

@@ -35,12 +35,12 @@ resource "aws_iam_policy" "get_course" {
   policy = data.aws_iam_policy_document.get_course.json
 
 }
+# ssxwsx
 
-
-data "aws_iam_policy_document" "post_course" {
+data "aws_iam_policy_document" "put_course" {
   statement {
     actions = [
-      "dynamodb:PostItem",
+      "dynamodb:PutItem",
     ]
 
     resources = [
@@ -48,10 +48,10 @@ data "aws_iam_policy_document" "post_course" {
     ]
   }
 }
-resource "aws_iam_policy" "post_course" {
-  name   = "${module.label_table_courses.id}-post"
+resource "aws_iam_policy" "put_course" {
+  name   = "${module.label_table_courses.id}-put"
   path   = "/"
-  policy = data.aws_iam_policy_document.post_course.json
+  policy = data.aws_iam_policy_document.put_course.json
 
 }
 
@@ -133,10 +133,10 @@ resource "aws_iam_policy" "read_table_authors" {
 # }
 
 
-# data "aws_iam_policy_document" "post_author" {
+# data "aws_iam_policy_document" "put_author" {
 #   statement {
 #     actions = [
-#       "dynamodb:postItem",
+#       "dynamodb:putItem",
 #     ]
 
 #     resources = [
@@ -144,10 +144,10 @@ resource "aws_iam_policy" "read_table_authors" {
 #     ]
 #   }
 # }
-# resource "aws_iam_policy" "post_author" {
+# resource "aws_iam_policy" "put_author" {
 #   name   = module.label_table_authors.id
 #   path   = "/"
-#   policy = data.aws_iam_policy_document.post_author.json
+#   policy = data.aws_iam_policy_document.put_author.json
 # }
 
 # data "aws_iam_policy_document" "update_author" {

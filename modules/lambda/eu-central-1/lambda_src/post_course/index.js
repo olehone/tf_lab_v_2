@@ -33,7 +33,7 @@ exports.handler = (event, context, callback) => {
     },
     TableName: process.env.TABLE_NAME
   };
-  dynamodb.postItem(params, (err, data) => {
+  dynamodb.putItem(params, (err, data) => {
     if (err) {
       console.log(err);
       callback(err);
