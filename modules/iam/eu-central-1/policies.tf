@@ -1,3 +1,20 @@
+resource "aws_iam_policy" "function_logging_policy" {
+  name   = "function-logging-policy"
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        Action : [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        Effect : "Allow",
+        Resource : "arn:aws:logs:*:*:*"
+      }
+    ]
+  })
+}
+
 #Courses table
 
 data "aws_iam_policy_document" "read_table_courses" {
@@ -60,6 +77,7 @@ data "aws_iam_policy_document" "update_course" {
   statement {
     actions = [
       "dynamodb:UpdateItem",
+      "dynamodb:PutItem",
     ]
 
     resources = [
