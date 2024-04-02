@@ -3,22 +3,17 @@ const dynamodb = new AWS.DynamoDB({
   region: process.env.AWS_REGION,
   apiVersion: "2012-08-10"
 });
-const replaceAll = (str, find, replace) => {
-  return str.replace(new RegExp(find, "g"), replace);
-};
-
 exports.handler = (event, context, callback) => {
-  const id = replaceAll(event.title, " ", "-").toLowerCase();
   const params = {
     Item: {
       id: {
-        S: id
+        S: event.id
       },
       title: {
         S: event.title
       },
       watchHref: {
-        S: `http://www.pluralsight.com/courses/${id}`
+        S: event.watchHref
       },
       authorId: {
         S: event.authorId
@@ -30,7 +25,7 @@ exports.handler = (event, context, callback) => {
         S: event.category
       }
     },
-    TableName: "courses"
+    TableName: process.env.TABLE_NAME
   };
   dynamodb.putItem(params, (err, data) => {
     if (err) {
